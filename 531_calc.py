@@ -22,6 +22,25 @@ def maxEstimate(workout):
 	trainingMax = realMax*.9
 	return trainingMax
 	
+def weekNumbers(workoutMax, workout):
+	#workoutWeight = roundNumbers(workoutMax)
+	print "Week 1"
+	print str(workout) + ":"
+	print str(roundNumbers(workoutMax*.65)) + " x 5 reps" 
+	print str(roundNumbers(workoutMax*.75)) + " x 5 reps"
+	print str(roundNumbers(workoutMax*.85)) + " x 5+ reps"
+
+def roundNumbers(weightNumber):
+	remainder = weightNumber%5
+	
+	if remainder > 3:
+		newWeight = weightNumber - remainder + 5
+	else:
+		newWeight = weightNumber - remainder
+	
+	print weightNumber
+	return newWeight
+	
 """
 #calculate the training max based on Wendler's 90% rule
 def wendlerMax(max):
@@ -37,6 +56,8 @@ def main():
 	print "Your deadlift training max is: " + str(workoutMaxes.dl_max)
 	print "Your bench training max is: " + str(workoutMaxes.bench_max)
 	print "Your overhead press training max is: " + str(workoutMaxes.ohp_max)
+	
+	weekNumbers(workoutMaxes.squat_max, "Squat")
 	
 	"""
 	realMax = realMaxEstimate()
