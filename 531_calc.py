@@ -21,24 +21,69 @@ def maxEstimate(workout):
 	
 	trainingMax = realMax*.9
 	return trainingMax
-	
-def weekNumbers(workoutMax, workout):
-	#workoutWeight = roundNumbers(workoutMax)
-	print "Week 1"
-	print str(workout) + ":"
-	print str(roundNumbers(workoutMax*.65)) + " x 5 reps" 
-	print str(roundNumbers(workoutMax*.75)) + " x 5 reps"
-	print str(roundNumbers(workoutMax*.85)) + " x 5+ reps"
 
+#Print out a weekly schedule
+def weekNumbers(squat, dl, bench, ohp):
+	#workoutWeight = roundNumbers(workoutMax)
+	
+	#List for all of the workout names
+	workouts = ["Over Head Press", "Deadlift", "Bench", "Squat"]
+	#Dictionary with all of the workout totals
+	workoutTotals = {"Over Head Press":ohp, "Deadlift":dl, "Bench":bench, "Squat":squat}
+	
+	weekNumber = 1
+	setPercent = .65
+	setWeeklyMultiplier = 0.00
+	setPercentMultiplier = 0.00
+	
+	#iterate through the weeks, printing the weights and rep counts
+	while weekNumber < 4:
+		print "\nWeek " + str(weekNumber)
+		
+		#set a tuple to the set numbers based on the week number
+		if weekNumber == 1:
+			setNumbers = '5','5','5+'
+		elif weekNumber == 2:
+			setNumbers = '3','3','3+'
+		elif weekNumber == 3:
+			setNumbers = '5','3','1+'
+		
+		setPercent += setWeeklyMultiplier
+		
+		#iterate through all of the workouts and their totals in the list
+		for workout in workouts:
+			print workout
+			workoutSets(workoutTotals[workout], setPercent, setPercentMultiplier, setNumbers)
+		#reset the percentMultiplier for the next set
+		setPercentMultiplier = 0.00
+		#Increase the weekly multiplier
+		setWeeklyMultiplier = 0.05
+		weekNumber += 1
+
+
+#calculate and print the workout totals	
+def workoutSets(weight, setPercent, setPercentMultiplier, setNumbers):
+	
+	setCounter = 1
+	
+	while setCounter < 4:
+			
+		print str(roundNumbers(weight*(setPercent+setPercentMultiplier))) + " x "+setNumbers[setCounter-1]+" reps"
+		#print setPercent+setPercentMultiplier
+		setCounter += 1
+		setPercentMultiplier += .10
+	
+#Take a number, round it up to the nearest multiple of five
 def roundNumbers(weightNumber):
 	remainder = weightNumber%5
 	
+	newWeight = weightNumber - remainder + 5
+	"""
 	if remainder > 3:
 		newWeight = weightNumber - remainder + 5
 	else:
 		newWeight = weightNumber - remainder
-	
-	print weightNumber
+	"""
 	return newWeight
 	
 """
@@ -57,7 +102,7 @@ def main():
 	print "Your bench training max is: " + str(workoutMaxes.bench_max)
 	print "Your overhead press training max is: " + str(workoutMaxes.ohp_max)
 	
-	weekNumbers(workoutMaxes.squat_max, "Squat")
+	weekNumbers(workoutMaxes.squat_max, workoutMaxes.dl_max, workoutMaxes.bench_max, workoutMaxes.ohp_max)
 	
 	"""
 	realMax = realMaxEstimate()
