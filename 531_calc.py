@@ -49,7 +49,7 @@ def weekNumbers(squat, dl, bench, ohp):
 		elif weekNumber == 3:
 			setNumbers = '5','3','1+'
 		elif weekNumber == 4:
-			setNumbers == '5','5','5'
+			setNumbers = '5','5','5'
 		
 		#Week 4 is a deload week and the weight percentage needs to be changed accordingly
 		setPercent += setWeeklyMultiplier
