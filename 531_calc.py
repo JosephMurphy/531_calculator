@@ -1,3 +1,4 @@
+#class that stores all of the workout maxes
 class Maxes(object):
 	def __init__(self, squat_max, dl_max, bench_max, ohp_max):
 		self.squat_max = squat_max
@@ -37,7 +38,7 @@ def weekNumbers(squat, dl, bench, ohp):
 	setPercentMultiplier = 0.00
 	
 	#iterate through the weeks, printing the weights and rep counts
-	while weekNumber < 4:
+	while weekNumber < 5:
 		print "\nWeek " + str(weekNumber)
 		
 		#set a tuple to the set numbers based on the week number
@@ -47,8 +48,13 @@ def weekNumbers(squat, dl, bench, ohp):
 			setNumbers = '3','3','3+'
 		elif weekNumber == 3:
 			setNumbers = '5','3','1+'
+		elif weekNumber == 4:
+			setNumbers == '5','5','5'
 		
+		#Week 4 is a deload week and the weight percentage needs to be changed accordingly
 		setPercent += setWeeklyMultiplier
+		if weekNumber == 4:
+			setPercent = .40
 		
 		#iterate through all of the workouts and their totals in the list
 		for workout in workouts:
@@ -86,12 +92,6 @@ def roundNumbers(weightNumber):
 	"""
 	return newWeight
 	
-"""
-#calculate the training max based on Wendler's 90% rule
-def wendlerMax(max):
-	trainingMax = max*.9
-	return trainingMax
-"""
 
 def main():
 
@@ -103,19 +103,6 @@ def main():
 	print "Your overhead press training max is: " + str(workoutMaxes.ohp_max)
 	
 	weekNumbers(workoutMaxes.squat_max, workoutMaxes.dl_max, workoutMaxes.bench_max, workoutMaxes.ohp_max)
-	
-	"""
-	realMax = realMaxEstimate()
-	trainingMax = wendlerMax(realMax)
-	
-	squat = Maxes(trainingMax)	
-	print "Your real 1rm is: " + str(realMax)
-	print "Your training max is: "+ str(squat.squat_max)
-	"""
-	
-	
-
-
-	
+		
 if __name__ == '__main__':
         main()
