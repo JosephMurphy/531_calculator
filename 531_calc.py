@@ -95,6 +95,7 @@ def roundNumbers(weightNumber):
 
 def main():
 
+	#test comment when editting online
 	workoutMaxes = Maxes(maxEstimate("squat"), maxEstimate("deadlift"), maxEstimate("bench"), maxEstimate("overhead press"))
 	
 	print "Your squat training max is: " + str(workoutMaxes.squat_max)
